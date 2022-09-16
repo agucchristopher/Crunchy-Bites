@@ -51,14 +51,15 @@ const renderscroll = () => {
   );
 };
 
-const renderRestuarants = () => {
+const renderRestuarants = (navigation) => {
+  console.log(navigation)
   return (
     <ScrollView>
       <FlatList
         data={restaurants}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() => Alert.alert("Hey", "You tapped" + " " + item.name)}
+            onPress={() => navigation.navigate("details")}
             style={styles.restaurant}
           >
             <Text style={styles.text}>{item.name}</Text>
@@ -95,9 +96,7 @@ const Home = () => {
     Roboto: require("../../assets/fonts/roboto/Roboto-Black.ttf"),
   });
   useEffect(() => {
-    LogBox.ignoreAllLogs(
-      "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead."
-    );
+   LogBox.ignoreAllLogs();
   });
   if (!fontsLoaded) {
     return <ActivityIndicator animating color={"#F84C0B"} size={"large"} />;

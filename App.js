@@ -2,20 +2,28 @@ import * as React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import home from "./screens/Home";
+import Header from "./components/header";
+import Home from "./screens/Home";
 import Cart from "./screens/Cart";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useFonts } from "expo-font";
-import Header from "./components/header";
+import {createNativeStackNavigator} from "@react-navigation/native-stack"
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-export default function App({ Navigator }) {
+export default function App() {
+  return (
+   
+      <Tabs />
+  )
+}
+function Tabs({ Navigator }) {
   return (
     <NavigationContainer>
       <Tab.Navigator options={{ headerTintColor: "#F84C0B" }}>
         <Tab.Screen
           name="Home"
-          component={home}
+          component={Home}
           options={{
             tabBarShowLabel: false,
             headerTintColor: "#F84C0B",
@@ -50,7 +58,7 @@ export default function App({ Navigator }) {
         />
         <Tab.Screen
           name="Favourite"
-          component={home}
+          component={Home}
           options={{
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
@@ -68,7 +76,7 @@ export default function App({ Navigator }) {
         />
         <Tab.Screen
           name="Search"
-          component={home}
+          component={Home}
           options={{
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
@@ -85,7 +93,7 @@ export default function App({ Navigator }) {
         />
         <Tab.Screen
           name="Settings"
-          component={home}
+          component={Home}
           options={{
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
@@ -101,6 +109,6 @@ export default function App({ Navigator }) {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
+      </NavigationContainer>
   );
 }
