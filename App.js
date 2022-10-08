@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Header from "./components/header";
@@ -7,22 +7,73 @@ import Home from "./screens/Home";
 import Cart from "./screens/Cart";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useFonts } from "expo-font";
-import {createNativeStackNavigator} from "@react-navigation/native-stack"
+import Signin from "./screens/Auth/signin";
+import { createNativeStackNavigator } from "./node_modules/react-native-screens/lib/commonjs/native-stack";
+import Search from "./screens/Search";
+import Signup from "./screens/Auth/signup";
+import RestaurantDetails from "./screens/Details/restuarantDetails";
+import Forgotpass from "./screens/Auth/forgotpass";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-export default function App() {
-  return (
-   
-      <Tabs />
-  )
-}
-function Tabs({ Navigator }) {
+export default function App({ Navigator }) {
   return (
     <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Signin"
+          component={Signin}
+          options={{
+            headerTintColor: "#F84C0B",
+            title: "Sign In",
+            headerTitleStyle: {
+              fontFamily: "Noto Sans Medium",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={Signup}
+          options={{
+            headerTintColor: "#F84C0B",
+            headerTitleStyle: {
+              fontFamily: "Noto Sans Medium",
+            },
+            title: "Sign Up",
+          }}
+        />
+        <Stack.Screen
+          name="Fp"
+          component={Forgotpass}
+          options={{
+            headerTintColor: "#F84C0B",
+            headerTitleStyle: {
+              fontFamily: "Noto Sans Medium",
+            },
+            title: "Forget Password?",
+            headerBackButtonShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Tabs}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Rdetails"
+          component={RestaurantDetails}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+function Tabs() {
+  return (
+    <React.Fragment>
       <Tab.Navigator options={{ headerTintColor: "#F84C0B" }}>
         <Tab.Screen
-          name="Home"
+          name="Homepage"
           component={Home}
           options={{
             tabBarShowLabel: false,
@@ -32,7 +83,7 @@ function Tabs({ Navigator }) {
               return (
                 <Ionicons
                   name="md-home"
-                  size={30}
+                  size={tabInfo.focused ? 35 : 30}
                   color={tabInfo.focused ? "#F84C0B" : "#8e8e93"}
                 />
               );
@@ -66,8 +117,9 @@ function Tabs({ Navigator }) {
             tabBarIcon: (tabInfo) => {
               return (
                 <Ionicons
+                  style={{}}
                   name="heart"
-                  size={30}
+                  size={tabInfo.focused ? 35 : 30}
                   color={tabInfo.focused ? "#F84C0B" : "#8e8e93"}
                 />
               );
@@ -76,7 +128,7 @@ function Tabs({ Navigator }) {
         />
         <Tab.Screen
           name="Search"
-          component={Home}
+          component={Search}
           options={{
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
@@ -109,6 +161,6 @@ function Tabs({ Navigator }) {
           }}
         />
       </Tab.Navigator>
-      </NavigationContainer>
+    </React.Fragment>
   );
 }

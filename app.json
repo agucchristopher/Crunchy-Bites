@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#FFFFFF"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -17,7 +17,7 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.spurex.taxi",
+      "bundleIdentifier": "com.spurex.foodapp",
       "config": {
         "googleMapsApiKey": "AIzaSyDWdgMXfzkGFWoRQHgJh8iOJ_K2ke3sQuI"
       }

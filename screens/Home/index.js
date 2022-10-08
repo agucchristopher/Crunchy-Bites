@@ -10,136 +10,88 @@ import {
   Alert,
   LogBox,
   ActivityIndicator,
+  TextInput,
+  StatusBar,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { useFonts } from "expo-font";
 import React, { useEffect, useState } from "react";
 import { Toppics, cart, restaurants } from "../../data";
+import Toppicks from "../../components/Toppicks";
+import PopularRestaurants from "../../components/PopularRestaurants";
+import { useNavigation } from "@react-navigation/native";
 
-const renderscroll = () => {
-  return (
-    <ScrollView
-      style={styles.scrollcontainer}
-      horizontal={"true"}
-      showsHorizontalScrollIndicator={"false"}
-    >
-      <FlatList
-        data={Toppics}
-        horizontal
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={(i) => console.log(item.price)}
-            style={styles.itemContainer}
-          >
-            <Image source={item.source} style={styles.image} />
-            <Text
-              style={[
-                styles.subtitle,
-                {
-                  alignContent: "center",
-                  justifyContent: "center",
-                  paddingBottom: 20,
-                },
-              ]}
-            >
-              {item.name} ${item.price}
-            </Text>
-          </TouchableOpacity>
-        )}
-      />
-    </ScrollView>
-  );
-};
-
-const renderRestuarants = (navigation) => {
-  console.log(navigation)
-  return (
-    <ScrollView>
-      <FlatList
-        data={restaurants}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => navigation.navigate("details")}
-            style={styles.restaurant}
-          >
-            <Text style={styles.text}>{item.name}</Text>
-            <Image source={item.logo} style={styles.logo} />
-            <Text
-              style={[
-                styles.subtitle,
-                {
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: 5,
-                },
-              ]}
-            >
-              {" "}
-              <Icon name="star" size={15} color="#F84C0B" /> {item.rating}{" "}
-              {"  "}
-              <Icon name="phone-alt" size={15} color="#F84C0B" /> {item.phone}
-              {"  "}
-              <Icon name="map-marker" size={15} color="#F84C0B" />{" "}
-              {item.location}
-            </Text>
-          </TouchableOpacity>
-        )}
-      />
-    </ScrollView>
-  );
-};
 const Home = () => {
+  const navigation = useNavigation();
   const [fontsLoaded] = useFonts({
     "Noto Sans Medium I": require("../../assets/fonts/Noto_Sans/NotoSans-Medium.ttf"),
     "Noto Sans Medium": require("../../assets/fonts/Noto_Sans/NotoSans-Bold.ttf"),
     Roboto: require("../../assets/fonts/roboto/Roboto-Black.ttf"),
   });
   useEffect(() => {
-   LogBox.ignoreAllLogs();
+    LogBox.ignoreAllLogs();
   });
   if (!fontsLoaded) {
     return <ActivityIndicator animating color={"#F84C0B"} size={"large"} />;
   } else {
     return (
-      <View>
-        <ScrollView style={styles.container}>
+      <View
+        style={{
+          flex: 1,
+          height: Dimensions.get("screen").height,
+          width: Dimensions.get("screen").width,
+          backgroundColor: "#fff",
+        }}
+      >
+        <StatusBar backgroundColor="#F84C0B" style="light" />
+        <ScrollView
+          showHorizontalScrollIndicator={false}
+          showVerticalScrollIndicator={false}
+          style={styles.container}
+        >
           <View
             style={{
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 0,
+              flexDirection: "row",
+              justifyContents: "center",
+              alignItems: "center",
+              backgroundColor: "transparent",
+              borderRadius: 0,
+              backgroundColor: "#fff",
+              margin: 5,
+              borderWidth: 2,
+              borderColor: "darkgrey",
+              elevation: 5,
+              borderRadius: 25,
+              position: "relative",
+              // borderColor: "#fff",
             }}
           >
-            <View
+            <Text
               style={{
-                height: "50%",
-                position: "absolute",
-                opacity: 1,
+                color: "darkgrey",
+                height: 35,
+                width: "90%",
+                fontSize: 20,
+                paddingLeft: 20,
               }}
-            ></View>
-            <View
-              style={{
-                backgroundColor: "#fff",
-                height: "50%",
-                position: "absolute",
-              }}
-            ></View>
-          </View>
-          <View>
-            <Text style={styles.text}>Top Picks Today </Text>
-            <View
               onPress={() => {
-                Alert.alert("Hey", "hey");
+                navigation.navigate("Search");
+                console.log("search");
               }}
             >
-              {renderscroll()}
-            </View>
-            <Text style={styles.text}>Popular Restuarants</Text>
-            <View>{renderRestuarants()}</View>
+              Search Foods..
+            </Text>
+            <Text>
+              <Icon
+                style={{ alignSelf: "flex-end" }}
+                name="search"
+                size={20}
+                color="darkgrey"
+              />
+            </Text>
           </View>
+          <Toppicks />
+          <PopularRestaurants />
         </ScrollView>
       </View>
     );
@@ -167,29 +119,16 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: "contain",
   },
-  itemContainer: {
-    padding: 0,
-    margin: 10,
-    height: "90%",
-    alignItems: "center",
-    justifyContent: "center",
-    elevation: 4,
-    width: 200,
-    borderRadius: 25,
-    backgroundColor: "#fff",
-  },
   container: {
     backgroundColor: "#fff",
-    opacity: 1,
-    height: "100%",
-    elevation: 2,
-    borderRadius: 2,
+    height: Dimensions.get("window").height,
     zIndex: 0,
   },
   text: {
     fontFamily: "Noto Sans Medium",
     fontSize: 25,
     margin: 10,
+    marginTop: 0,
   },
   restaurant: {
     marginTop: 8,
@@ -206,6 +145,16 @@ const styles = StyleSheet.create({
   subtitle: {
     fontFamily: "Noto Sans Medium",
     fontSize: 15,
+  },
+  input: {
+    width: "80%",
+    backgroundColor: "white",
+    height: 30,
+    color: "black",
+    paddingLeft: 20,
+    margin: 5,
+    borderRadius: 25,
+    fontSize: 20,
   },
 });
 export default Home;

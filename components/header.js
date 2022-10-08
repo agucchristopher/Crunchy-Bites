@@ -9,7 +9,7 @@ const Header = () => {
       onPress={() => navigation.navigate("Search")}
       style={{ margin: 2 }}
     >
-      <Icon name="search" size={30} color={"#F84C0B"} />
+      <Icon name="person-circle" size={35} color={"#F84C0B"} />
     </TouchableOpacity>
   );
 };
