@@ -5,6 +5,7 @@ import {
   ScrollView,
   Dimensions,
   StatusBar,
+  TouchableOpacity,
 } from "react-native";
 import mapStyles from "../../assets/mapstyle";
 import React from "react";
@@ -13,6 +14,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import MapView, { Marker } from "react-native-maps";
 import SimilarRestaurants from "../../components/SimilarRestaurants";
+import { useNavigation } from "@react-navigation/native";
 const RestaurantDetails = ({ restaurant, route }) => {
   console.log(route);
   const {
@@ -29,27 +31,53 @@ const RestaurantDetails = ({ restaurant, route }) => {
   } = route.params.restaurant;
   const long = maplocation.longitude;
   const lat = maplocation.latitude;
+  const navigation = useNavigation();
   return (
-    <View style={{ height: "100%" }}>
+    <View style={{ height: Dimensions.get("window").height }}>
       <StatusBar backgroundColor="#F84C0B" />
+      <TouchableOpacity
+        style={{
+          top: 10,
+          left: 10,
+          right: 0,
+          bottom: 0,
+          position: "absolute",
+          zIndex: 30,
+          borderRadius: 15,
+          backgroundColor: "white",
+          width: 50,
+          height: 50,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+        onPress={() => navigation.goBack()}
+      >
+        <Icon name="arrow-left" size={30} />
+      </TouchableOpacity>
       <ScrollView
         style={{
-          paddingTop: StatusBar.currentHeight,
-          height: Dimensions.get("window").height,
-          width: Dimensions.get("window").width,
+          height: Dimensions.get("screen").height,
+          width: Dimensions.get("screen").width,
           backgroundColor: "#fff",
+          padding: 0,
         }}
+        showsHorizontalScrollIndicator={false}
       >
         <Image
           source={logo}
+          resizeMode={"contain"}
           style={{
-            height: Dimensions.get("window").height * 0.3,
-            width: Dimensions.get("window").width * 1,
-            resizeMode: "contain",
-            alignSelf: "flex-start",
-            marginTop: 0,
+            height: Dimensions.get("window").height * 0.35,
+            width: Dimensions.get("window").width,
+            resizeMode: "cover",
+            alignSelf: "center",
+            margin: 0,
             padding: 0,
-            flex: 1,
+            flex: 2,
+            top: 0,
+            left: 0,
+            right: 0,
+            borderBottomRightRadius: 60,
           }}
         />
         <Text
@@ -148,23 +176,22 @@ const RestaurantDetails = ({ restaurant, route }) => {
           region={{
             longitude: { long },
             latitude: { lat },
-            latitudeDelta: 1,
-            longitudeDelta: 0.0421,
+            latitudeDelta: { lat },
+            longitudeDelta: { long },
           }}
+          mapType={"terrain"}
+          followsUserLocation={true}
+          showsMyLocationButton={true}
+          showsUserLocation={true}
+          showsBuildings={true}
+          showsPointsOfInterest={true}
+          zoomControlEnabled
           customMapStyle={mapStyles}
+          scrollEnabled={false}
         >
           {/* {<Marker />} */}
         </MapView>
-        <SimilarRestaurants />
-        <View>
-          <Text>{"      "}</Text>
-          <Text>{"      "}</Text>
-          <Text>{"      "}</Text>
-          <Text>{"      "}</Text>
-          <Text>{"      "}</Text>
-          <Text>{"      "}</Text>
-          <Text>{"      "}</Text>
-        </View>
+        <SimilarRestaurants id={id} />
       </ScrollView>
     </View>
   );

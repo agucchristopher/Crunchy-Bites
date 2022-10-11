@@ -16,7 +16,7 @@ const PopularRestaurants = () => {
   const navigation = useNavigation();
 
   return (
-    <React.Fragment>
+    <View style={{ margin: 8, padding: 0 }}>
       <Text style={styles.text}>Popular Restuarants</Text>
       <FlatList
         data={restaurants}
@@ -27,7 +27,29 @@ const PopularRestaurants = () => {
             }
             style={styles.restaurant}
           >
-            <Text style={styles.text}>{item.name}</Text>
+            <Text
+              style={{
+                ...styles.text,
+                position: "absolute",
+                zIndex: 10,
+                bottom: 0,
+                color: "black",
+                backgroundColor: "white",
+                borderRadius: 25,
+                top: 0,
+                height: 50,
+                maxHeight: 70,
+                paddingLeft: 8,
+                paddingRight: 8,
+                marginTop: 20,
+                alignContent: "center",
+                justifyContent: "center",
+                opacity: 0.8,
+                alignSelf: "center",
+              }}
+            >
+              {item.name}
+            </Text>
             <Image source={item.logo} style={styles.logo} />
             <Text
               style={[
@@ -37,6 +59,14 @@ const PopularRestaurants = () => {
                   alignItems: "center",
                   justifyContent: "center",
                   padding: 5,
+                  position: "absolute",
+                  zIndex: 10,
+                  bottom: 0,
+                  color: "black",
+                  backgroundColor: "#fff",
+                  borderRadius: 25,
+                  marginBottom: 10,
+                  opacity: 0.8,
                 },
               ]}
             >
@@ -51,7 +81,7 @@ const PopularRestaurants = () => {
           </TouchableOpacity>
         )}
       />
-    </React.Fragment>
+    </View>
   );
 };
 
@@ -71,12 +101,13 @@ const styles = StyleSheet.create({
     borderRadius: 0,
   },
   logo: {
-    width: Dimensions.get("window").width * 0.8,
+    width: Dimensions.get("window").width,
     padding: 0,
     alignItems: "center",
     justifyContent: "center",
-    height: 200,
-    resizeMode: "contain",
+    height: 250,
+    resizeMode: "cover",
+    borderRadius: 25,
   },
   itemContainer: {
     padding: 0,
@@ -86,7 +117,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     elevation: 4,
     width: 200,
-    borderRadius: 25,
+    borderRadius: 5,
     backgroundColor: "#fff",
   },
   container: {
@@ -97,16 +128,19 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: "Noto Sans Medium",
     fontSize: 25,
-    margin: 10,
+    margin: 0,
     marginTop: 0,
   },
   restaurant: {
-    marginTop: 10,
+    marginTop: 20,
     elevation: 10,
-    borderRadius: 3,
+    borderRadius: 5,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
+    borderRadius: 25,
+    marginLeft: 5,
+    marginRight: 5,
   },
   title: {
     fontFamily: "Roboto",

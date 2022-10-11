@@ -15,11 +15,13 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 const Search = () => {
   const [input, setinput] = React.useState("");
-  const [restaurant, setRestaurant] = React.useState(restaurants);
+  const [restaurant, setRestaurant] = React.useState(null);
   function Oninput(value) {
     setinput(value);
   }
   const navigation = useNavigation();
+  const search = restaurants.filter((item) => item.name.includes(input));
+  console.log(search);
   return (
     <KeyboardAvoidingView style={{ backgroundColor: "#fff", flex: 1 }}>
       <View
@@ -32,10 +34,9 @@ const Search = () => {
           backgroundColor: "#fff",
           margin: 5,
           borderWidth: 2,
-          borderColor: "darkgrey",
-          elevation: 5,
+          borderColor: "#fff",
+          elevation: 15,
           borderRadius: 25,
-          // borderColor: "#fff",
         }}
       >
         <Text style={{ marginLeft: 8 }}>
@@ -46,83 +47,101 @@ const Search = () => {
           placeholder="Search..."
           placeholderTextColor="grey"
           style={styles.input}
+          onFocus={() => setRestaurant(restaurants)}
           onChangeText={(input) => {
             Oninput(input);
-            let search = restaurants.filter((item) =>
-              item.name.includes(input)
-            );
+
             setRestaurant(search);
           }}
+          onBlur={() => setRestaurant(search)}
         />
       </View>
       <View>
         <FlatList
           data={restaurant}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("Rdetails", { restaurant: item })
-              }
-              style={{
-                margin: 7,
-                height: 100,
-                elevation: 10,
-                borderRadius: 5,
-                alignItems: "center",
-                flexDirection: "row",
-                paddingLeft: 13,
-                width: Dimensions.get("window").width * 0.98,
-                backgroundColor: "white",
-              }}
-            >
-              <Image
-                source={item.logo}
-                style={{
-                  height: "80%",
-                  width: "25%",
-                  borderRadius: 3,
-                  resizeMode: "contain",
-                }}
-              />
-              <View>
-                <View
-                  onPress={() => console.log(item)}
+          renderItem={({ item }) => {
+            if (search.length >= 1) {
+              return (
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.navigate("Rdetails", { restaurant: item })
+                  }
                   style={{
-                    flexDirection: "column",
-                    height: "100%",
-                    marginLeft: 8,
-                    justifyContent: "center",
-                    backgroundColor: "white",
+                    margin: 3,
+                    height: 100,
+                    elevation: 6,
+                    borderRadius: 5,
+                    alignItems: "center",
+                    flexDirection: "row",
+                    paddingLeft: 13,
+                    width: Dimensions.get("window").width * 0.98,
+                    backgroundColor: "#fff",
                   }}
                 >
-                  <Text
+                  <Image
+                    source={item.logo}
                     style={{
-                      color: "black",
-                      fontFamily: "Noto Sans Medium",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 20,
+                      height: "80%",
+                      width: "25%",
+                      borderRadius: 3,
+                      resizeMode: "contain",
                     }}
-                  >
-                    {item.name}
-                  </Text>
-                  <Text
-                    style={{
-                      color: "black",
-                      fontFamily: "Noto Sans Medium",
-                      alignItems: "center",
-                      fontSize: 20,
-                      justifyContent: "center",
-                      margin: 0,
-                    }}
-                  >
-                    {item.location}
-                  </Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          )}
+                  />
+                  <View>
+                    <View
+                      onPress={() => console.log(item)}
+                      style={{
+                        flexDirection: "column",
+                        height: "100%",
+                        marginLeft: 8,
+                        justifyContent: "center",
+                        backgroundColor: "white",
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: "black",
+                          fontFamily: "Noto Sans Medium",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: 20,
+                        }}
+                      >
+                        {item.name}
+                      </Text>
+                      <Text
+                        style={{
+                          color: "black",
+                          fontFamily: "Noto Sans Medium",
+                          alignItems: "center",
+                          fontSize: 20,
+                          justifyContent: "center",
+                          margin: 0,
+                        }}
+                      >
+                        {item.location}
+                      </Text>
+                    </View>
+                  </View>
+                </TouchableOpacity>
+              );
+            }
+          }}
         />
+        {search.length <= 0 ? (
+          <View
+            style={{
+              alignSelf: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ fontFamily: "Noto Sans Medium", fontSize: 25 }}>
+              Found Nothing <Icon name="search" size={25} />
+            </Text>
+          </View>
+        ) : (
+          ""
+        )}
       </View>
     </KeyboardAvoidingView>
   );
@@ -138,7 +157,7 @@ const styles = StyleSheet.create({
     color: "black",
     paddingLeft: 20,
     margin: 5,
-    borderRadius: 25,
+    borderRadius: 20,
     fontSize: 20,
   },
 });

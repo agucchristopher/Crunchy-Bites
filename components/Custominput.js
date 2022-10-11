@@ -17,6 +17,7 @@ const Custominput = (props) => {
         padding: 10,
         justifyContents: "center",
         flexDirection: "row",
+        alignItems: "center",
       }}
     >
       <Icon
@@ -39,6 +40,7 @@ const Custominput = (props) => {
         type={props.type}
         secureTextEntry={props.type == "password" ? view : false}
         keyboardType={props.keyboardType}
+        cursorColor="#F84C0B"
       />
       {props.type == "password" ? (
         <Icon

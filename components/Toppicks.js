@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  Animated,
 } from "react-native";
 import React from "react";
 import { Toppics } from "../data";
@@ -15,7 +16,10 @@ export default function Toppicks() {
   return (
     <View showHorizontalScrollIndicator={false} style={{ marginBottom: 10 }}>
       <Text style={styles.text}>Top Picks Today </Text>
-      <FlatList
+      <Animated.FlatList
+        scrollEventThrottle={16}
+        pagingEnabled
+        snapToAlignment="center"
         data={Toppics}
         horizontal={true}
         showHorizontalScrollIndicator={true}
@@ -46,32 +50,36 @@ export default function Toppicks() {
 
 const styles = StyleSheet.create({
   image: {
-    width: Dimensions.get("window").width * 0.4,
+    width: Dimensions.get("screen").height * 0.25,
     marginLeft: 0,
     marginRight: 5,
     marginBottom: 4,
     padding: 0,
     height: 200,
-    resizeMode: "contain",
+    resizeMode: "cover",
     flex: 1,
-    marginTop: 0,
-    borderRadius: 0,
+    marginTop: 10,
+    borderTopRightRadius: 3,
+    borderTopLeftRadius: 3,
   },
   logo: {
-    width: Dimensions.get("window").width * 0.8,
+    width: "80%",
     padding: 0,
     alignItems: "center",
     justifyContent: "center",
     height: 200,
     resizeMode: "contain",
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
   },
   itemContainer: {
-    padding: 0,
+    // paddingLeft: 10,
+    // paddingRight: 10,
     margin: 10,
     alignItems: "center",
     justifyContent: "center",
     elevation: 4,
-    width: 200,
+    width: Dimensions.get("screen").height * 0.25,
     borderRadius: 25,
     backgroundColor: "#fff",
   },
@@ -95,6 +103,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
+    width: Dimensions.get("screen").height * 0.25,
   },
   title: {
     fontFamily: "Roboto",

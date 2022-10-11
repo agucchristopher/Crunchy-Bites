@@ -43,53 +43,52 @@ const Home = () => {
           backgroundColor: "#fff",
         }}
       >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContents: "center",
+            alignItems: "center",
+            backgroundColor: "transparent",
+            borderRadius: 0,
+            backgroundColor: "#fff",
+            margin: 5,
+            borderWidth: 2,
+            borderColor: "#fff",
+            elevation: 5,
+            borderRadius: 25,
+            position: "relative",
+            // borderColor: "#fff",
+          }}
+        >
+          <Text
+            style={{
+              color: "darkgrey",
+              height: 35,
+              width: "90%",
+              fontSize: 20,
+              paddingLeft: 20,
+            }}
+            onPress={() => {
+              navigation.navigate("Search");
+            }}
+          >
+            Search Foods..
+          </Text>
+          <Text>
+            <Icon
+              style={{ alignSelf: "flex-end" }}
+              name="search"
+              size={20}
+              color="darkgrey"
+            />
+          </Text>
+        </View>
         <StatusBar backgroundColor="#F84C0B" style="light" />
         <ScrollView
           showHorizontalScrollIndicator={false}
           showVerticalScrollIndicator={false}
           style={styles.container}
         >
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContents: "center",
-              alignItems: "center",
-              backgroundColor: "transparent",
-              borderRadius: 0,
-              backgroundColor: "#fff",
-              margin: 5,
-              borderWidth: 2,
-              borderColor: "darkgrey",
-              elevation: 5,
-              borderRadius: 25,
-              position: "relative",
-              // borderColor: "#fff",
-            }}
-          >
-            <Text
-              style={{
-                color: "darkgrey",
-                height: 35,
-                width: "90%",
-                fontSize: 20,
-                paddingLeft: 20,
-              }}
-              onPress={() => {
-                navigation.navigate("Search");
-                console.log("search");
-              }}
-            >
-              Search Foods..
-            </Text>
-            <Text>
-              <Icon
-                style={{ alignSelf: "flex-end" }}
-                name="search"
-                size={20}
-                color="darkgrey"
-              />
-            </Text>
-          </View>
           <Toppicks />
           <PopularRestaurants />
         </ScrollView>

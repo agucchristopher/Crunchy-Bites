@@ -76,8 +76,13 @@ function Tabs() {
           name="Homepage"
           component={Home}
           options={{
-            tabBarShowLabel: false,
             headerTintColor: "#F84C0B",
+            headerTitleStyle: {
+              fontFamily: "Noto Sans Medium",
+            },
+            title: "Crunchy Bites",
+            headerBackButtonShown: false,
+            tabBarShowLabel: false,
             headerRight: () => <Header />,
             tabBarIcon: (tabInfo) => {
               return (

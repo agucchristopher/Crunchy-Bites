@@ -9,18 +9,29 @@ import {
 } from "react-native";
 import React, { Component } from "react";
 import { restaurants } from "../data";
-function SimilarRestaurants() {
+import { useNavigation } from "@react-navigation/native";
+function SimilarRestaurants({ id }) {
+  const navigation = useNavigation();
+  const Similar = restaurants.filter((item) => item.id != id);
+  console.log("similar ", Similar);
   return (
-    <View style={{ height: "30%", marginBottom: 60 }}>
-      <Text style={[styles.subtitle, { color: "#F84C0B", fontSize: 20 }]}>
+    <View style={{ flex: 1 }}>
+      <Text
+        style={[
+          styles.subtitle,
+          { color: "#F84C0B", fontSize: 25, alignSelf: "center" },
+        ]}
+      >
         Similar Restaurants
       </Text>
       <FlatList
-        data={restaurants}
+        data={Similar}
         horizontal={true}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={(i) => console.log(item.name)}
+            onPress={() =>
+              navigation.navigate("Rdetails", { restaurant: item })
+            }
             style={styles.itemContainer}
           >
             <Image source={item.logo} style={styles.image} />
@@ -68,13 +79,14 @@ const styles = StyleSheet.create({
   itemContainer: {
     padding: 0,
     margin: 10,
+    marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
     elevation: 4,
     width: 200,
     borderRadius: 25,
     backgroundColor: "#fff",
-    height: "100%",
+    flex: 1,
   },
   container: {
     backgroundColor: "#fff",
@@ -88,6 +100,7 @@ const styles = StyleSheet.create({
     fontFamily: "Noto Sans Medium",
     fontSize: 25,
     margin: 10,
+    alignSelf: "center",
   },
   restaurant: {
     marginTop: 8,

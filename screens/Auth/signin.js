@@ -37,6 +37,7 @@ const Signin = () => {
           backgroundColor: "#fff",
           height: Dimensions.get("window").height,
           zIndex: 0,
+          alignItems: "center",
         }}
       >
         <Text
@@ -84,8 +85,7 @@ const Signin = () => {
         </Text>
         <CustomButton
           onPress={() => {
-            console.log(pass);
-            navigation.navigate("Home");
+            navigation.replace("Home");
           }}
           name="Sign In"
           color={
