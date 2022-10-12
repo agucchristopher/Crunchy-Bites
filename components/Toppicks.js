@@ -11,21 +11,23 @@ import {
 } from "react-native";
 import React from "react";
 import { Toppics } from "../data";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Toppicks() {
+  const navigation = useNavigation();
   return (
     <View showHorizontalScrollIndicator={false} style={{ marginBottom: 10 }}>
       <Text style={styles.text}>Top Picks Today </Text>
       <Animated.FlatList
         scrollEventThrottle={16}
-        pagingEnabled
-        snapToAlignment="center"
+        // pagingEnabled
+        // snapToAlignment="center"
         data={Toppics}
         horizontal={true}
         showHorizontalScrollIndicator={true}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={(i) => console.log(item.name + " " + item.price)}
+            onPress={() => navigation.navigate("FoodDetails", { food: item })}
             style={styles.itemContainer}
           >
             <Image source={item.source} style={styles.image} />
@@ -50,38 +52,36 @@ export default function Toppicks() {
 
 const styles = StyleSheet.create({
   image: {
-    width: Dimensions.get("screen").height * 0.25,
+    width: Dimensions.get("window").width * 0.5,
     marginLeft: 0,
     marginRight: 5,
     marginBottom: 4,
     padding: 0,
     height: 200,
-    resizeMode: "cover",
+    resizeMode: "contain",
     flex: 1,
-    marginTop: 10,
-    borderTopRightRadius: 3,
-    borderTopLeftRadius: 3,
+    marginTop: 5,
+    borderRadius: 0,
   },
   logo: {
-    width: "80%",
+    width: Dimensions.get("window").width * 0.8,
     padding: 0,
     alignItems: "center",
     justifyContent: "center",
     height: 200,
     resizeMode: "contain",
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
   },
   itemContainer: {
-    // paddingLeft: 10,
-    // paddingRight: 10,
+    padding: 0,
     margin: 10,
+    marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
     elevation: 4,
-    width: Dimensions.get("screen").height * 0.25,
+    width: 200,
     borderRadius: 25,
     backgroundColor: "#fff",
+    flex: 1,
   },
   container: {
     backgroundColor: "#fff",
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     fontFamily: "Noto Sans Medium",
     fontSize: 25,
     margin: 10,
+    alignSelf: "center",
   },
   restaurant: {
     marginTop: 8,
@@ -103,7 +104,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
-    width: Dimensions.get("screen").height * 0.25,
   },
   title: {
     fontFamily: "Roboto",

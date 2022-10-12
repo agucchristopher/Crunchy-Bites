@@ -11,7 +11,7 @@ import mapStyles from "../../assets/mapstyle";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import Icon from "react-native-vector-icons/FontAwesome5";
+import Icon from "react-native-vector-icons/FontAwesome";
 import MapView, { Marker } from "react-native-maps";
 import SimilarRestaurants from "../../components/SimilarRestaurants";
 import { useNavigation } from "@react-navigation/native";
@@ -63,6 +63,11 @@ const RestaurantDetails = ({ restaurant, route }) => {
         }}
         showsHorizontalScrollIndicator={false}
       >
+        <View style={{ zIndex: 1000, position: "absolute", top: 0, right: 0 }}>
+          <Text style={{ margin: 10 }}>
+            <Icon name={"heart"} color={"#F84C0B"} size={30} />
+          </Text>
+        </View>
         <Image
           source={logo}
           resizeMode={"contain"}
@@ -121,7 +126,7 @@ const RestaurantDetails = ({ restaurant, route }) => {
               {"   "}
             </Text>
             <Icon
-              name="map-marker-alt"
+              name="map-marker"
               style={{ margin: 0, color: "#F84C0B" }}
               size={25}
             />
@@ -138,7 +143,7 @@ const RestaurantDetails = ({ restaurant, route }) => {
               {"  "}
             </Text>
             <Icon
-              name="clock"
+              name="stopwatch"
               style={{ margin: 0, color: "#F84C0B" }}
               size={25}
             />

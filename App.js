@@ -4,21 +4,23 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Header from "./components/header";
 import Home from "./screens/Home";
-import Cart from "./screens/Cart";
+import { Cart, cartlength } from "./screens/Cart";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useFonts } from "expo-font";
 import Signin from "./screens/Auth/signin";
 import { createNativeStackNavigator } from "./node_modules/react-native-screens/lib/commonjs/native-stack";
 import Search from "./screens/Search";
 import Signup from "./screens/Auth/signup";
-import RestaurantDetails from "./screens/Details/restuarantDetails";
 import Forgotpass from "./screens/Auth/forgotpass";
+import { Fooddetails } from "./screens/Details";
+import RestaurantDetails from "./screens/Details/restuarantDetails";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export default function App({ Navigator }) {
   return (
     <NavigationContainer>
+      <StatusBar style="light" backgroundColor={"#F84C0B"} />
       <Stack.Navigator>
         <Stack.Screen
           name="Signin"
@@ -64,6 +66,13 @@ export default function App({ Navigator }) {
           component={RestaurantDetails}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="FoodDetails"
+          component={Fooddetails}
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -83,7 +92,7 @@ function Tabs() {
             title: "Crunchy Bites",
             headerBackButtonShown: false,
             tabBarShowLabel: false,
-            headerRight: () => <Header />,
+            headerRight: () => <Header icon={"person-circle"} />,
             tabBarIcon: (tabInfo) => {
               return (
                 <Ionicons
@@ -101,6 +110,8 @@ function Tabs() {
           options={{
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
+            tabBarBadge: 10,
+            tabBarHideOnKeyboard: true,
             tabBarIcon: (tabInfo) => {
               return (
                 <Ionicons
@@ -118,7 +129,9 @@ function Tabs() {
           options={{
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
-
+            headerTitleStyle: {
+              fontFamily: "Noto Sans Medium",
+            },
             tabBarIcon: (tabInfo) => {
               return (
                 <Ionicons
@@ -137,6 +150,10 @@ function Tabs() {
           options={{
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
+            tabBarHideOnKeyboard: true,
+            headerTitleStyle: {
+              fontFamily: "Noto Sans Medium",
+            },
             tabBarIcon: (tabInfo) => {
               return (
                 <Ionicons
@@ -153,6 +170,9 @@ function Tabs() {
           component={Home}
           options={{
             headerTintColor: "#F84C0B",
+            headerTitleStyle: {
+              fontFamily: "Noto Sans Medium",
+            },
             tabBarShowLabel: false,
             tabBarIcon: (tabInfo) => {
               return (

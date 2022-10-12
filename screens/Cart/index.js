@@ -14,12 +14,13 @@ import {
 import React, { useState } from "react";
 import { restaurants, Toppics, cart } from "../../data";
 import { useFonts } from "expo-font";
-import Icon from "react-native-vector-icons/FontAwesome";
 import useWindowDimensions from "react-native/Libraries/Utilities/useWindowDimensions";
+import Cartitem from "./Cartitem";
 
-const Cart = () => {
+export const Cart = () => {
   const [cartitems, setcart] = useState(cart);
-  const [itemnumber, setnumber] = useState(null);
+  console.log(cartitems);
+  const Cartlength = cartitems.length;
   const [fontsLoaded] = useFonts({
     "Noto Sans Medium I": require("../../assets/fonts/Noto_Sans/NotoSans-Medium.ttf"),
     "Noto Sans Medium": require("../../assets/fonts/Noto_Sans/NotoSans-Bold.ttf"),
@@ -33,7 +34,6 @@ const Cart = () => {
       return prevState.filter((item) => item.id != id);
     });
   };
-
   return (
     <ScrollView
       style={{
@@ -59,113 +59,10 @@ const Cart = () => {
             showVerticalScrollIndicator={false}
             keyExtractor={(item) => item.id}
             hiddenItem={() => <Text>hh</Text>}
+            it
             renderItem={({ item }) => {
               if (cartitems !== "") {
-                {
-                  setnumber(item.number);
-                  console.log(item.name + " " + itemnumber);
-                }
-                return (
-                  <View
-                    style={{
-                      margin: 3,
-                      height: 100,
-                      elevation: 5,
-                      borderRadius: 3,
-                      alignItems: "center",
-                      flexDirection: "row",
-                      paddingLeft: 13,
-                      width: Dimensions.get("window").width * 0.98,
-                      backgroundColor: "white",
-                    }}
-                  >
-                    <Image
-                      source={item.source}
-                      style={{
-                        height: "80%",
-                        width: "25%",
-                        borderRadius: 3,
-                        resizeMode: "contain",
-                      }}
-                    />
-                    <View>
-                      <View
-                        style={{
-                          flexDirection: "column",
-                          height: "100%",
-                          marginLeft: 8,
-                          justifyContent: "center",
-                          backgroundColor: "white",
-                        }}
-                      >
-                        <Text
-                          style={{
-                            color: "black",
-                            fontFamily: "Noto Sans Medium",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            fontSize: 20,
-                          }}
-                        >
-                          {item.name}
-                        </Text>
-                        <Text
-                          style={{
-                            color: "black",
-                            fontFamily: "Noto Sans Medium",
-                            alignItems: "center",
-                            fontSize: 20,
-                            justifyContent: "center",
-                            margin: 0,
-                          }}
-                        >
-                          ${item.price * itemnumber}
-                        </Text>
-                      </View>
-                    </View>
-                    <View
-                      style={{
-                        flexDirection: "row",
-                        backgroundColor: "white",
-                        alignItems: "flex-end",
-                        justifyContent: "space-evenly",
-                        flex: 1,
-                        marginLeft: 20,
-                        borderRadius: 50,
-                        width: 200,
-                      }}
-                    >
-                      <TouchableOpacity
-                        onPress={() => setnumber(itemnumber + 1)}
-                        style={{
-                          justifyContent: "center",
-                          alignSelf: "flex-end",
-                          flexDirection: "row",
-                          marginHorizontal: 10,
-                        }}
-                      >
-                        <Icon name="minus" size={30} color="#F84C0B" />
-                      </TouchableOpacity>
-                      <Text
-                        style={{ fontFamily: "Noto Sans Medium", fontSize: 20 }}
-                      >
-                        {itemnumber}
-                      </Text>
-                      <TouchableOpacity
-                        onPress={() => setnumber(itemnumber + 1)}
-                        style={{
-                          justifyContent: "center",
-                          alignSelf: "flex-end",
-                          flexDirection: "row",
-                          marginVertical: 0,
-                          marginHorizontal: 10,
-                        }}
-                      >
-                        <Icon name="plus" color="#F84C0B" size={30} />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                );
+                return <Cartitem item={item} deleteCart={deleteCart} />;
               }
             }}
           />
@@ -188,7 +85,4 @@ const Cart = () => {
     </ScrollView>
   );
 };
-
-export default Cart;
-
 const styles = StyleSheet.create({});

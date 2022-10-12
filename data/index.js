@@ -4,36 +4,39 @@ export const Toppics = [
     name: "Burger",
     source: require("../assets/images/honey-mustard-chicken-burger.jpg"),
     price: 5,
+    restaurantid: 1,
+    favourite: true,
+
+    details: "Sweet Hawaiian pizza made by the native of honolulu",
   },
   {
     id: 2,
     name: "Salad",
     source: require("../assets/images/salad.jpg"),
     price: 7,
+    restaurantid: 3,
+    favourite: false,
+    details: "Sweet Hawaiian pizza made by the native of honolulu",
   },
   {
     id: 4,
     name: "Hotdog",
-    source: require("../assets/images/hawaiian-pizza.jpg"),
+    source: require("../assets/images/chicago-hot-dog.jpg"),
     price: 10,
+    restaurantid: 4,
+    favourite: false,
+
+    details: "Sweet Hawaiian pizza made by the native of honolulu",
   },
   {
     id: 5,
-    name: "Hotdog",
+    name: "Pizza",
     source: require("../assets/images/hawaiian-pizza.jpg"),
     price: 10,
-  },
-  {
-    id: 6,
-    name: "Hotdog",
-    source: require("../assets/images/hawaiian-pizza.jpg"),
-    price: 10,
-  },
-  {
-    id: 7,
-    name: "Hotdog",
-    source: require("../assets/images/hawaiian-pizza.jpg"),
-    price: 10,
+    restaurantid: 1,
+    favourite: true,
+
+    details: "Sweet Hawaiian pizza made by the native of honolulu",
   },
 ];
 export const restaurants = [
@@ -42,7 +45,7 @@ export const restaurants = [
     name: "Liberty Kitchens",
     rating: 5,
     logo: require("../assets/images/noodle-shop.jpg"),
-    phone: "070985483921",
+    phone: "07098548392",
     location: "Rivers",
     duration: "10:00 - 2:00",
     time: "5 mins",

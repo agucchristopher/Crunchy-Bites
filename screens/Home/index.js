@@ -43,12 +43,12 @@ const Home = () => {
           backgroundColor: "#fff",
         }}
       >
-        <View
+        {/* <View
           style={{
             flexDirection: "row",
             justifyContents: "center",
             alignItems: "center",
-            backgroundColor: "transparent",
+            // backgroundColor: "transparent",
             borderRadius: 0,
             backgroundColor: "#fff",
             margin: 5,
@@ -60,6 +60,14 @@ const Home = () => {
             // borderColor: "#fff",
           }}
         >
+          <Text style={{ marginLeft: 8 }}>
+            <Icon
+              style={{ alignSelf: "flex-end" }}
+              name="search"
+              size={20}
+              color="darkgrey"
+            />
+          </Text>
           <Text
             style={{
               color: "darkgrey",
@@ -74,15 +82,7 @@ const Home = () => {
           >
             Search Foods..
           </Text>
-          <Text>
-            <Icon
-              style={{ alignSelf: "flex-end" }}
-              name="search"
-              size={20}
-              color="darkgrey"
-            />
-          </Text>
-        </View>
+        </View> */}
         <StatusBar backgroundColor="#F84C0B" style="light" />
         <ScrollView
           showHorizontalScrollIndicator={false}

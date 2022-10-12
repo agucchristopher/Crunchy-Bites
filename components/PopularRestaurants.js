@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 250,
     resizeMode: "cover",
-    borderRadius: 25,
+    borderRadius: 0,
   },
   itemContainer: {
     padding: 0,
