@@ -12,9 +12,9 @@ const Custominput = (props) => {
         backgroundColor: "#f9fBFC",
         marginHorizontal: 10,
         marginVertical: 5,
-        height: 55,
+        height: 58,
         borderRadius: 10,
-        padding: 10,
+        padding: 8,
         justifyContents: "center",
         flexDirection: "row",
         alignItems: "center",
@@ -27,12 +27,15 @@ const Custominput = (props) => {
         style={{ marginRight: 3 }}
       />
       <TextInput
+        numberOfLines={1}
+        scrollEnabled={false}
         style={{
           fontSize: 20,
           flex: 1,
           fontFamily: "Noto Sans Medium",
           alignSelf: "center",
           paddingHorizontal: 15,
+          height: "100%",
         }}
         onChangeText={props.onChangeText}
         placeholder={props.placeholder}

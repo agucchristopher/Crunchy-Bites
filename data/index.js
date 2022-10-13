@@ -1,4 +1,4 @@
-export const Toppics = [
+export const Foods = [
   {
     id: 1,
     name: "Burger",
@@ -6,8 +6,8 @@ export const Toppics = [
     price: 5,
     restaurantid: 1,
     favourite: true,
-
     details: "Sweet Hawaiian pizza made by the native of honolulu",
+    category: ["Snacks", "Burgers"],
   },
   {
     id: 2,
@@ -17,6 +17,7 @@ export const Toppics = [
     restaurantid: 3,
     favourite: false,
     details: "Sweet Hawaiian pizza made by the native of honolulu",
+    category: ["Salads", "Fruits"],
   },
   {
     id: 4,
@@ -25,8 +26,8 @@ export const Toppics = [
     price: 10,
     restaurantid: 4,
     favourite: false,
-
     details: "Sweet Hawaiian pizza made by the native of honolulu",
+    category: ["Snacks", "Hotdogs"],
   },
   {
     id: 5,
@@ -35,9 +36,33 @@ export const Toppics = [
     price: 10,
     restaurantid: 1,
     favourite: true,
-
     details: "Sweet Hawaiian pizza made by the native of honolulu",
+    category: ["Snacks"],
   },
+];
+export const category = [
+  {
+    id: 1,
+    name: "Snacks",
+  },
+  {
+    id: 2,
+    name: "Fruits",
+  },
+  {
+    id: 3,
+    name: "Salads",
+  },
+  {
+    id: 4,
+    name: "Chips",
+  },
+  {
+    id: 5,
+    name: "Pies",
+  },
+  { id: 6, name: "Burgers" },
+  { id: 7, name: "Hotdogs" },
 ];
 export const restaurants = [
   {
@@ -74,7 +99,7 @@ export const restaurants = [
     name: "Buhari and Sons Kitchen",
     rating: 1.5,
     logo: require("../assets/images/chicken.jpg"),
-    phone: "070985483921",
+    phone: "07098548321",
     location: "Akwa",
     duration: "10:00 - 2:00",
     time: "5 mins",

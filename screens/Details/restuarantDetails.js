@@ -13,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
 import MapView, { Marker } from "react-native-maps";
-import SimilarRestaurants from "../../components/SimilarRestaurants";
+import Menu from "../../components/menu";
 import { useNavigation } from "@react-navigation/native";
 const RestaurantDetails = ({ restaurant, route }) => {
   console.log(route);
@@ -44,21 +44,22 @@ const RestaurantDetails = ({ restaurant, route }) => {
           position: "absolute",
           zIndex: 30,
           borderRadius: 15,
-          backgroundColor: "white",
+          backgroundColor: "#F84C0B",
           width: 50,
           height: 50,
           alignItems: "center",
           justifyContent: "center",
+          color: "white",
         }}
         onPress={() => navigation.goBack()}
       >
-        <Icon name="arrow-left" size={30} />
+        <Icon name="arrow-left" size={30} color={"white"} />
       </TouchableOpacity>
       <ScrollView
         style={{
           height: Dimensions.get("screen").height,
           width: Dimensions.get("screen").width,
-          backgroundColor: "#fff",
+          backgroundColor: "white",
           padding: 0,
         }}
         showsHorizontalScrollIndicator={false}
@@ -82,7 +83,8 @@ const RestaurantDetails = ({ restaurant, route }) => {
             top: 0,
             left: 0,
             right: 0,
-            borderBottomRightRadius: 60,
+            // borderBottomRightRadius: 15,
+            // borderBottomLeftRadius: 15,
           }}
         />
         <Text
@@ -91,6 +93,8 @@ const RestaurantDetails = ({ restaurant, route }) => {
             alignSelf: "center",
             fontSize: 30,
             color: "#F84C0B",
+            backgroundColor: "#fff",
+            flex: 1,
           }}
         >
           {name}
@@ -142,22 +146,6 @@ const RestaurantDetails = ({ restaurant, route }) => {
               {location}
               {"  "}
             </Text>
-            <Icon
-              name="stopwatch"
-              style={{ margin: 0, color: "#F84C0B" }}
-              size={25}
-            />
-            <Text
-              style={{
-                margin: 0,
-                fontSize: 20,
-                color: "#F84C0B",
-                fontFamily: "Noto Sans Medium",
-              }}
-            >
-              {" "}
-              {time}{" "}
-            </Text>
           </View>
         </View>
         <Text
@@ -196,7 +184,7 @@ const RestaurantDetails = ({ restaurant, route }) => {
         >
           {/* {<Marker />} */}
         </MapView>
-        <SimilarRestaurants id={id} />
+        <Menu id={id} />
       </ScrollView>
     </View>
   );

@@ -16,8 +16,8 @@ import {
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { useFonts } from "expo-font";
 import React, { useEffect, useState } from "react";
-import { Toppics, cart, restaurants } from "../../data";
-import Toppicks from "../../components/Toppicks";
+import { Foods, cart, restaurants } from "../../data";
+import Categories from "../../components/Categories";
 import PopularRestaurants from "../../components/PopularRestaurants";
 import { useNavigation } from "@react-navigation/native";
 
@@ -43,7 +43,7 @@ const Home = () => {
           backgroundColor: "#fff",
         }}
       >
-        {/* <View
+        <View
           style={{
             flexDirection: "row",
             justifyContents: "center",
@@ -57,6 +57,7 @@ const Home = () => {
             elevation: 5,
             borderRadius: 25,
             position: "relative",
+            height: 45,
             // borderColor: "#fff",
           }}
         >
@@ -82,14 +83,14 @@ const Home = () => {
           >
             Search Foods..
           </Text>
-        </View> */}
+        </View>
         <StatusBar backgroundColor="#F84C0B" style="light" />
         <ScrollView
           showHorizontalScrollIndicator={false}
           showVerticalScrollIndicator={false}
           style={styles.container}
         >
-          <Toppicks />
+          <Categories />
           <PopularRestaurants />
         </ScrollView>
       </View>

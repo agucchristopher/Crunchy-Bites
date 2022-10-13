@@ -12,7 +12,7 @@ import {
   ScrollView,
 } from "react-native";
 import React, { useState } from "react";
-import { restaurants, Toppics, cart } from "../../data";
+import { restaurants, Foods, cart } from "../../data";
 import { useFonts } from "expo-font";
 import useWindowDimensions from "react-native/Libraries/Utilities/useWindowDimensions";
 import Cartitem from "./Cartitem";

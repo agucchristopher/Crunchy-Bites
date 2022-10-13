@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
-import { restaurants, Toppics } from "../../data";
+import { restaurants, Foods } from "../../data";
 import Icon from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 const Search = () => {

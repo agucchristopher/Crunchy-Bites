@@ -13,6 +13,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "@expo/vector-icons/FontAwesome";
 import { SafeAreaView } from "react-native-safe-area-context";
+import CustomButton from "../../components/CustomButton";
 
 export const Fooddetails = ({ route, food }) => {
   const { name, id, source, price, favourite, restaurantid, details, number } =
@@ -235,6 +236,7 @@ export const Fooddetails = ({ route, food }) => {
                 />
               </TouchableOpacity>
             </View>
+            <CustomButton name={"Add to Cart"} color={"#F84C0B"} />
           </View>
         </View>
       </ScrollView>

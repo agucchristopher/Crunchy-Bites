@@ -31,23 +31,21 @@ const Signin = () => {
     return <ActivityIndicator animating color={"#F84C0B"} size={"large"} />;
   } else {
     return (
-      <KeyboardAvoidingView
-        behaviour="padding"
+      <ScrollView
         style={{
           backgroundColor: "#fff",
           height: Dimensions.get("window").height,
           zIndex: 0,
-          alignItems: "center",
         }}
       >
         <Text
           style={{
             alignSelf: "center",
             fontFamily: "Noto Sans Medium",
-            fontSize: 25,
+            fontSize: 23,
           }}
         >
-          Welcome Back Friend
+          Welcome Back Friend!
         </Text>
         <Text
           style={{
@@ -78,6 +76,7 @@ const Signin = () => {
             color: "#F84C0B",
             alignSelf: "flex-end",
             marginRight: 2,
+            fontSize: 15,
           }}
           onPress={() => navigation.navigate("Fp")}
         >
@@ -96,7 +95,13 @@ const Signin = () => {
               : "#F84C0B"
           }
         />
-        <Text style={{ alignSelf: "center", fontFamily: "Noto Sans Medium I" }}>
+        <Text
+          style={{
+            alignSelf: "center",
+            fontFamily: "Noto Sans Medium I",
+            fontSize: 15,
+          }}
+        >
           New to Crunchy Bites?{" "}
           <Text
             style={{ fontFamily: "Noto Sans Medium", color: "#F84C0B" }}
@@ -105,7 +110,7 @@ const Signin = () => {
             Signup
           </Text>
         </Text>
-      </KeyboardAvoidingView>
+      </ScrollView>
     );
   }
 };

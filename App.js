@@ -13,6 +13,7 @@ import Search from "./screens/Search";
 import Signup from "./screens/Auth/signup";
 import Forgotpass from "./screens/Auth/forgotpass";
 import { Fooddetails } from "./screens/Details";
+import Notifications from "./screens/Notifications";
 import RestaurantDetails from "./screens/Details/restuarantDetails";
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -57,6 +58,27 @@ export default function App({ Navigator }) {
           }}
         />
         <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{
+            headerTintColor: "#F84C0B",
+            tabBarShowLabel: false,
+            //tabBarHideOnKeyboard: true,
+            headerTitleStyle: {
+              fontFamily: "Noto Sans Medium",
+            },
+            // tabBarIcon: (tabInfo) => {
+            //   return (
+            //     <Ionicons
+            //       name="md-search"
+            //       size={tabInfo.focused ? 35 : 30}
+            //       color={tabInfo.focused ? "#F84C0B" : "#8e8e93"}
+            //     />
+            //   );
+            // },
+          }}
+        />
+        <Stack.Screen
           name="Home"
           component={Tabs}
           options={{ headerShown: false }}
@@ -92,7 +114,7 @@ function Tabs() {
             title: "Crunchy Bites",
             headerBackButtonShown: false,
             tabBarShowLabel: false,
-            headerRight: () => <Header icon={"person-circle"} />,
+            headerRight: () => <Header icon={"search"} />,
             tabBarIcon: (tabInfo) => {
               return (
                 <Ionicons
@@ -111,6 +133,10 @@ function Tabs() {
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
             tabBarBadge: 10,
+            tabBarBadgeStyle: {
+              backgroundColor: "#F84C0B",
+              fontFamily: "Noto Sans Medium",
+            },
             tabBarHideOnKeyboard: true,
             tabBarIcon: (tabInfo) => {
               return (
@@ -123,6 +149,7 @@ function Tabs() {
             },
           }}
         />
+
         <Tab.Screen
           name="Favourite"
           component={Home}
@@ -145,8 +172,8 @@ function Tabs() {
           }}
         />
         <Tab.Screen
-          name="Search"
-          component={Search}
+          name="Notifications"
+          component={Notifications}
           options={{
             headerTintColor: "#F84C0B",
             tabBarShowLabel: false,
@@ -154,10 +181,15 @@ function Tabs() {
             headerTitleStyle: {
               fontFamily: "Noto Sans Medium",
             },
+            tabBarBadge: "5",
+            tabBarBadgeStyle: {
+              backgroundColor: "#F84C0B",
+              fontFamily: "Noto Sans Medium",
+            },
             tabBarIcon: (tabInfo) => {
               return (
                 <Ionicons
-                  name="md-search"
+                  name="md-notifications"
                   size={tabInfo.focused ? 35 : 30}
                   color={tabInfo.focused ? "#F84C0B" : "#8e8e93"}
                 />

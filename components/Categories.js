@@ -9,22 +9,53 @@ import {
   Dimensions,
   Animated,
 } from "react-native";
-import React from "react";
-import { Toppics } from "../data";
+import React, { useState } from "react";
+import { Foods, category } from "../data";
 import { useNavigation } from "@react-navigation/native";
 
-export default function Toppicks() {
+export default function Categories() {
   const navigation = useNavigation();
+  const [selectedcategory, setselectedcategory] = useState("Snacks");
+  const [categories, setcategories] = useState(category);
   return (
     <View showHorizontalScrollIndicator={false} style={{ marginBottom: 10 }}>
-      <Text style={styles.text}>Top Picks Today </Text>
-      <Animated.FlatList
+      <Text style={styles.text}>Categories </Text>
+      <FlatList
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        data={categories}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={{
+              margin: 10,
+              backgroundColor:
+                item.name == selectedcategory ? "#F84C0B" : "white",
+              borderRadius: 5,
+              width: 100,
+              alignItems: "center",
+              height: 30,
+              justifyContent: "center",
+            }}
+            onPress={() => setselectedcategory(item.name)}
+          >
+            <Text
+              style={{
+                color: item.name == selectedcategory ? "white" : "#F84C0B",
+                fontFamily: "Noto Sans Medium",
+              }}
+            >
+              {item.name}
+            </Text>
+          </TouchableOpacity>
+        )}
+      />
+      <FlatList
         scrollEventThrottle={16}
         // pagingEnabled
         // snapToAlignment="center"
-        data={Toppics}
+        data={Foods.filter((item) => item.category.includes(selectedcategory))}
         horizontal={true}
-        showHorizontalScrollIndicator={true}
+        showHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => navigation.navigate("FoodDetails", { food: item })}
@@ -61,7 +92,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
     flex: 1,
     marginTop: 5,
-    borderRadius: 0,
+    // borderRadius: 30,
   },
   logo: {
     width: Dimensions.get("window").width * 0.8,
@@ -70,6 +101,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 200,
     resizeMode: "contain",
+    borderRadius: 150,
   },
   itemContainer: {
     padding: 0,
@@ -78,7 +110,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     elevation: 4,
-    width: 200,
+    width: 180,
     borderRadius: 25,
     backgroundColor: "#fff",
     flex: 1,
@@ -94,8 +126,8 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: "Noto Sans Medium",
     fontSize: 25,
-    margin: 10,
-    alignSelf: "center",
+    margin: 5,
+    // alignSelf: "center",
   },
   restaurant: {
     marginTop: 8,

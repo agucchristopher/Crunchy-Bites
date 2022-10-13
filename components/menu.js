@@ -8,11 +8,12 @@ import {
   Dimensions,
 } from "react-native";
 import React, { Component } from "react";
-import { restaurants } from "../data";
+import { restaurants, Foods } from "../data";
 import { useNavigation } from "@react-navigation/native";
-function SimilarRestaurants({ id }) {
+import Icon from "react-native-vector-icons/FontAwesome";
+function Menu({ id }) {
   const navigation = useNavigation();
-  const Similar = restaurants.filter((item) => item.id != id);
+  const Similar = Foods.filter((item) => item.restaurantid == id);
   console.log("similar ", Similar);
   return (
     <View style={{ flex: 1 }}>
@@ -22,19 +23,17 @@ function SimilarRestaurants({ id }) {
           { color: "#F84C0B", fontSize: 25, alignSelf: "center" },
         ]}
       >
-        Similar Restaurants
+        Menu <Icon name="spoon" size={20} />
       </Text>
       <FlatList
         data={Similar}
         horizontal={true}
         renderItem={({ item }) => (
           <TouchableOpacity
-            onPress={() =>
-              navigation.navigate("Rdetails", { restaurant: item })
-            }
+            onPress={() => navigation.navigate("FoodDetails", { food: item })}
             style={styles.itemContainer}
           >
-            <Image source={item.logo} style={styles.image} />
+            <Image source={item.source} style={styles.image} />
             <Text
               style={[
                 styles.subtitle,
@@ -53,7 +52,7 @@ function SimilarRestaurants({ id }) {
     </View>
   );
 }
-export default SimilarRestaurants;
+export default Menu;
 
 const styles = StyleSheet.create({
   image: {
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
   itemContainer: {
     padding: 0,
     margin: 10,
-    marginBottom: 10,
+    marginBottom: 30,
     alignItems: "center",
     justifyContent: "center",
     elevation: 4,
@@ -87,6 +86,8 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     backgroundColor: "#fff",
     flex: 1,
+    height: 250,
+    maxHeight: 300,
   },
   container: {
     backgroundColor: "#fff",

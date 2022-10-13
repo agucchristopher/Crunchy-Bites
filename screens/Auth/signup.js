@@ -30,7 +30,7 @@ const Signup = () => {
     return <ActivityIndicator animating color={"#F84C0B"} size={"large"} />;
   } else {
     return (
-      <View
+      <ScrollView
         style={{
           backgroundColor: "#fff",
           height: Dimensions.get("window").height,
@@ -106,7 +106,7 @@ const Signup = () => {
             Sign In
           </Text>
         </Text>
-      </View>
+      </ScrollView>
     );
   }
 };

@@ -69,6 +69,8 @@ const PopularRestaurants = () => {
                   opacity: 0.8,
                 },
               ]}
+              ellipsizeMode="tail"
+              numberOfLines={1}
             >
               {" "}
               <Icon name="star" size={15} color="#F84C0B" /> {item.rating}{" "}
@@ -149,5 +151,6 @@ const styles = StyleSheet.create({
   subtitle: {
     fontFamily: "Noto Sans Medium",
     fontSize: 15,
+    maxWidth: 400,
   },
 });

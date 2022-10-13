@@ -10,7 +10,7 @@ const Forgotpass = () => {
       style={{
         backgroundColor: "#fff",
         flex: 1,
-        justifyContent: "center",
+        // justifyContent: "center",
       }}
     >
       <Text
